@@ -48,4 +48,10 @@ router.put('/user/:id', async (req, res) => {
 })
 
 //Eliminar un usuario existente
-router.delete('/user/:id', 
+router.delete('/user/:id', async (req, res) => {
+  const id = req.params.id
+  await db.collection('users').doc(id).delete()
+  res.send('Eliminado')
+})
+
+module.exports = router
